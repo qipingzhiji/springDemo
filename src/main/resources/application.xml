@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:utils="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+    <utils:list id="strs">
+        <value>haha</value>
+        <value>heihei</value>
+    </utils:list>
+    <utils:map id="maps">
+            <entry key="m1" value="v1"></entry>
+            <entry key="m2" value="v2"></entry>
+            <entry key="m3" value="v3"></entry>
+    </utils:map>
+
+    <utils:properties id="properties">
+        <prop key="user">root</prop>
+        <prop key="password">root</prop>
+        <prop key="jdbcUrl">jdbc:mysql:///test</prop>
+        <prop key="driverClass">com.mysql.driver.class</prop>
+    </utils:properties>
+
+    <bean id="collectionTest" class="com.test.entity.CollectionTest">
+        <property name="strs" ref="strs">
+        </property>
+        <property name="maps" ref="maps">
+
+        </property>
+    </bean>
+
+
+    <bean id="person" class="com.test.entity.Person">
+        <constructor-arg name="name" value="zhanght" index="0"></constructor-arg>
+        <constructor-arg name="message"  index="1">
+            <value><![CDATA[this.is message.show]]></value>
+        </constructor-arg>
+    </bean>
+    <bean id="person2" class="com.test.entity.Person">
+        <constructor-arg name="name" value="zhanght" index="0"></constructor-arg>
+        <constructor-arg name="age" value="18" index="1"></constructor-arg>
+        <constructor-arg name="message"  index="2">
+            <value><![CDATA[this.is message.show]]></value>
+        </constructor-arg>
+    </bean>
+
+    <bean id="dataSource" class="com.test.entity.DataSourseProperties" >
+        <property name="properties" ref="properties">
+
+        </property>
+    </bean>
+
+    <bean id="person3" class="com.test.entity.Person" p:name="p-test" p:age="20"></bean>
+</beans>
